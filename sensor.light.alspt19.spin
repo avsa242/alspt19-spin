@@ -58,13 +58,15 @@ PUB lux(): l
 '   Returns: illuminance in milli-lux (1_000 = 1.000lx)
     return ( math.multdiv(  photocurrent(), ...
                             LUX_SCALE, ...
-                            1_000) )            ' ( photocurrent() * 4_500 ) / 1_000
+                            1_000) )            ' ( photocurrent() * LUX_SCALE ) / 1_000
 
 
 PUB photocurrent(): i
 ' Get current flow through sensor
 '   Returns: current in microamperes
-    return ( math.multdiv(voltage, 1_000, _load_res) )
+    return ( math.multdiv(  voltage(), ...
+                            1_000, ...
+                            _load_res) )
 
 
 PUB set_adc_averaging(a=0)

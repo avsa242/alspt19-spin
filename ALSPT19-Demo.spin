@@ -33,9 +33,6 @@ PUB main() | al
     setup()
 
 
-    adc.set_ref_voltage(4_870000)               ' ADC supply/reference voltage
-    adc.set_adc_channel(0)
-
     sensor.attach_adc(@adc)                     ' tell the sensor driver the ADC object to talk to
     sensor.set_load_resistor(10_000)            ' ALSPT19: RL resistor value (ohms)
     sensor.set_adc_averaging(8)                 ' optional ADC averaging (0 to disable)
@@ -62,7 +59,10 @@ PUB setup()
         repeat
 
     { set up the ADC }
-    adc.set_model(3002)
+    adc.set_model(3002)                         ' 3001/2/4/8, 3201/2/4/8
+    adc.set_ref_voltage(5_000000)               ' ADC supply/reference voltage (3.3, 5 ...)
+    adc.set_adc_channel(0)
+
 
 
 DAT
